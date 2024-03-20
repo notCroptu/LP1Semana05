@@ -47,8 +47,21 @@ namespace MyGame
     {
         static void Main(string[] args)
         {
-            Enemy slime = new Enemy("slime6789-10-11");
-            Console.WriteLine(slime.GetName());
+            int numEn = int.Parse(args[0]);
+            Enemy[] enemies = new Enemy[numEn];
+
+            for (int i = 1; i <= numEn; i++)
+            {
+                Console.Write($"Nome do inimigo {i}: ");
+                string name = Console.ReadLine();
+
+                enemies[ i - 1 ] = new Enemy(name);
+            }
+
+            foreach (Enemy enemy in enemies)
+            {
+                Console.WriteLine($"{enemy.GetName()} {enemy.GetHealth()} {enemy.GetShield()}");
+            }
         }
     }
 }
