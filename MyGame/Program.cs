@@ -27,8 +27,25 @@ namespace MyGame
         }
         public string SetName(string name)
         {
-            StringBuilder newname = new StringBuilder(name, 0, 8, 50);
-            return newname.ToString();
+            if (name.Length > 8)
+            {
+            StringBuilder buildernewname = new StringBuilder(name, 0, 8, 50);
+            name = buildernewname.ToString();
+            }
+            return name;
+        }
+        public void PickupPowerUp(PowerUp powerup, float value)
+        {
+            if (powerup == PowerUp.Health)
+            {
+                this.health += value;
+                if (this.health > 100) this.health = 100;
+            }
+            else if (powerup == PowerUp.Shield)
+            {
+                this.shield += value;
+                if (this.shield > 100) this.shield = 100;
+            }
         }
         public float GetHealth()
         {
@@ -62,6 +79,7 @@ namespace MyGame
             {
                 Console.WriteLine($"{enemy.GetName()} {enemy.GetHealth()} {enemy.GetShield()}");
             }
+
         }
     }
 }
